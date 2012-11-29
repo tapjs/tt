@@ -1,6 +1,7 @@
 # tt
 
-A very very small tap-emitting test framework.
+A <abbr title="100 lines">very very small</abbr> tap-emitting test
+framework.
 
 This is *not* a test runner, but you can use tap as your test runner.
 Because tt outputs TAP formatted results, it'll get interpreted

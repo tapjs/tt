@@ -9,16 +9,14 @@ var pass = 0
 
 function test(name, fn) {
   tests.push([name, fn]);
-  if (ran)
-    return
+  if (ran) return;
   ran = true
   process.nextTick(run)
 }
 
 var assert = require('assert')
 var t = Object.keys(assert).map(function (k) {
-  if (typeof assert[k] !== 'function')
-    return
+  if (typeof assert[k] !== 'function') return;
   return [k, function () {
     var s = null
     id++
