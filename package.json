@@ -1,0 +1,24 @@
+{
+  "name": "tt",
+  "version": "0.0.0",
+  "description": "tiny tap test thing",
+  "main": "tt.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/isaacs/tt"
+  },
+  "keywords": [
+    "minimal",
+    "tap",
+    "test",
+    "framework"
+  ],
+  "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me)",
+  "license": "BSD"
+}
