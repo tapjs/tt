@@ -32,18 +32,28 @@ function child(t) {
   t.end()
 }
 
+var path = require('path')
+var TT = path.dirname(__dirname)
 var expect = (function(){/*
 # child
 
 ok 1 ok
 
 not ok 2 AssertionError: message
-# at child (/Users/isaacs/dev/js/tt/test/basic.js:11:5)
+# at child ({TT}/test/basic.js:11:5)
+# at {TT}/tt.js:98:5
+# at process._tickCallback (node.js:415:13)
+# at Function.Module.runMain (module.js:499:11)
+
 
 ok 3 equal
 
 not ok 4 AssertionError: but not quite
-# at child (/Users/isaacs/dev/js/tt/test/basic.js:13:5)
+# at child ({TT}/test/basic.js:13:5)
+# at {TT}/tt.js:98:5
+# at process._tickCallback (node.js:415:13)
+# at Function.Module.runMain (module.js:499:11)
+
 
 # firstborn
 
@@ -54,25 +64,39 @@ ok 5 deepEqual
 ok 6 ok
 
 not ok 7 AssertionError: false == true
-# at /Users/isaacs/dev/js/tt/test/basic.js:18:9
+# at {TT}/test/basic.js:18:9
+# at {TT}/tt.js:98:5
+# at process._tickCallback (node.js:415:13)
+# at Function.Module.runMain (module.js:499:11)
+
 
 # grandchild 2
 
 ok 8 ok
 
 not ok 9 AssertionError: false == true
-# at /Users/isaacs/dev/js/tt/test/basic.js:23:9
+# at {TT}/test/basic.js:23:9
+# at {TT}/tt.js:98:5
+# at process._tickCallback (node.js:415:13)
+# at Function.Module.runMain (module.js:499:11)
+
 
 # secondborn
 
 not ok 10 AssertionError: not the same!
-# at /Users/isaacs/dev/js/tt/test/basic.js:29:7
+# at {TT}/test/basic.js:29:7
+# at {TT}/tt.js:98:5
+# at process._tickCallback (node.js:415:13)
+# at Function.Module.runMain (module.js:499:11)
+
 
 0..10
 
 # pass 5/10
 # fail 5/10
 */}).toString().split(/\n/).slice(1, -1).join('\n')
+.replace(/\{TT\}/g, TT)
+.replace(/:[0-9]+:[0-9]+(\)?)\n/g, ':#:#$1\n')
 
 function parent(t) {
   var spawn = require('child_process').spawn
@@ -88,6 +112,7 @@ function parent(t) {
     stderr += c
   })
   child.on('close', function(code, signal) {
+    stdout = stdout.trim().replace(/:[0-9]+:[0-9]+(\)?)\n/g, ':#:#$1\n')
     t.equal(stdout.trim(), expect.trim(), 'correct output')
     t.equal(code, 5, 'error code')
     t.equal(signal, null, 'no signal')

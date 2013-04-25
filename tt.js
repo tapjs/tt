@@ -44,7 +44,7 @@ var t = Object.keys(assert).map(function (k) {
       console.log('not ok %d %s', id, s ? s.shift() : e.message)
       if (s && s.length) {
         s = s.map(function(s) {
-          return s.trim()
+          return s.trim() + '\n'
         })
         console.log('# ' + s.join('# '))
       }
