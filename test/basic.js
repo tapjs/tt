@@ -40,19 +40,19 @@ var expect = (function(){/*
 ok 1 ok
 
 not ok 2 AssertionError: message
-# at child ({TT}/test/basic.js:11:5)
-# at {TT}/tt.js:98:5
-# at process._tickCallback (node.js:415:13)
-# at Function.Module.runMain (module.js:499:11)
+# at child ({TT}/test/basic.js:#:#
+# at {TT}/tt.js:#:#
+# at process._tickCallback (node.js:#:#
+# at Function.Module.runMain (module.js:#:#
 
 
 ok 3 equal
 
 not ok 4 AssertionError: but not quite
-# at child ({TT}/test/basic.js:13:5)
-# at {TT}/tt.js:98:5
-# at process._tickCallback (node.js:415:13)
-# at Function.Module.runMain (module.js:499:11)
+# at child ({TT}/test/basic.js:#:#
+# at {TT}/tt.js:#:#
+# at process._tickCallback (node.js:#:#
+# at Function.Module.runMain (module.js:#:#
 
 
 # firstborn
@@ -64,10 +64,10 @@ ok 5 deepEqual
 ok 6 ok
 
 not ok 7 AssertionError: false == true
-# at {TT}/test/basic.js:18:9
-# at {TT}/tt.js:98:5
-# at process._tickCallback (node.js:415:13)
-# at Function.Module.runMain (module.js:499:11)
+# at {TT}/test/basic.js:#:#
+# at {TT}/tt.js:#:#
+# at process._tickCallback (node.js:#:#
+# at Function.Module.runMain (module.js:#:#
 
 
 # grandchild 2
@@ -75,19 +75,19 @@ not ok 7 AssertionError: false == true
 ok 8 ok
 
 not ok 9 AssertionError: false == true
-# at {TT}/test/basic.js:23:9
-# at {TT}/tt.js:98:5
-# at process._tickCallback (node.js:415:13)
-# at Function.Module.runMain (module.js:499:11)
+# at {TT}/test/basic.js:#:#
+# at {TT}/tt.js:#:#
+# at process._tickCallback (node.js:#:#
+# at Function.Module.runMain (module.js:#:#
 
 
 # secondborn
 
 not ok 10 AssertionError: not the same!
-# at {TT}/test/basic.js:29:7
-# at {TT}/tt.js:98:5
-# at process._tickCallback (node.js:415:13)
-# at Function.Module.runMain (module.js:499:11)
+# at {TT}/test/basic.js:#:#
+# at {TT}/tt.js:#:#
+# at process._tickCallback (node.js:#:#
+# at Function.Module.runMain (module.js:#:#
 
 
 0..10
@@ -96,7 +96,6 @@ not ok 10 AssertionError: not the same!
 # fail 5/10
 */}).toString().split(/\n/).slice(1, -1).join('\n')
 .replace(/\{TT\}/g, TT)
-.replace(/:[0-9]+:[0-9]+(\)?)\n/g, ':#:#$1\n')
 
 function parent(t) {
   var spawn = require('child_process').spawn
@@ -112,7 +111,7 @@ function parent(t) {
     stderr += c
   })
   child.on('close', function(code, signal) {
-    stdout = stdout.trim().replace(/:[0-9]+:[0-9]+(\)?)\n/g, ':#:#$1\n')
+    stdout = stdout.trim().replace(/:[0-9]+:[0-9]+(\)?)\n/g, ':#:#\n')
     t.equal(stdout.trim(), expect.trim(), 'correct output')
     t.equal(code, 5, 'error code')
     t.equal(signal, null, 'no signal')
