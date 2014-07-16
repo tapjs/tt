@@ -1,8 +1,8 @@
 {
-  "name": "tt",
+  "name": "ttt",
   "version": "1.0.1",
-  "description": "tiny tap test thing",
-  "main": "tt.js",
+  "description": "tiny tap test thing for Tessel temporarily",
+  "main": "ttt.js",
   "directories": {
     "test": "test"
   },
@@ -11,13 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/isaacs/tt"
+    "url": "git@github.com:technicalmachine/ttt.git"
   },
   "keywords": [
     "minimal",
     "tap",
     "test",
-    "framework"
+    "framework",
+    "tessel",
+    "temporarily"
   ],
   "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me)",
   "license": "BSD"

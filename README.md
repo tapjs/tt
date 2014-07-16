@@ -1,18 +1,20 @@
-# tt
+# ttt
 
 A <abbr title="100 lines">very very small</abbr> tap-emitting test
 framework.
 
 This is *not* a test runner, but you can use tap as your test runner.
-Because tt outputs TAP formatted results, it'll get interpreted
+Because ttt outputs TAP formatted results, it'll get interpreted
 nicely.
+
+I forked it to make a temporary test runner for Tessel because Tessel has a bug with string formatters and no support for captureStackTrace (yet). Once those two bugs are fixed, we can use izs' default tt lib.
 
 ## USAGE
 
 Do this in your test script:
 
 ```javascript
-var test = require('tt')
+var test = require('ttt')
 
 test('first test', function(t) {
   t.equal(2, 1 + 1, 'math works')
@@ -36,7 +38,7 @@ thingie.
 
 ## API
 
-The function exported by `require('tt')` is the test function.  Give
+The function exported by `require('ttt')` is the test function.  Give
 it a name and a function.  That function will get an argument object
 which has some assertion methods.
 
