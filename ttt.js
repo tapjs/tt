@@ -25,7 +25,6 @@ var t = Object.keys(assert).map(function (k) {
       assert[k].apply(assert, arguments)
       pass ++
       console.log('ok', id, k)
-      console.log('')
     } catch (e) {
 
       fail ++
@@ -42,7 +41,7 @@ var t = Object.keys(assert).map(function (k) {
 
       if (s && !e.message)
         e.message = s[0]
-
+      console.log('')
       console.log('not ok', id, s ? s.shift() : e.message)
       if (s && s.length) {
         s = s.map(function(s) {
