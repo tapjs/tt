@@ -15,6 +15,7 @@ function test(name, fn) {
 }
 
 var assert = require('assert');
+Error.captureStackTrace = function(){};
 
 var t = Object.keys(assert).map(function (k) {
   if (typeof assert[k] !== 'function') return;
