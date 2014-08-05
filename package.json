@@ -1,6 +1,6 @@
 {
   "name": "ttt",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "tiny tap test thing for Tessel temporarily",
   "main": "ttt.js",
   "directories": {
@@ -22,5 +22,8 @@
     "temporarily"
   ],
   "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me)",
-  "license": "BSD"
+  "license": "BSD",
+  "dependencies": {
+    "assert": "~1.1.1"
+  }
 }
