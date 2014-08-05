@@ -14,7 +14,9 @@ function test(name, fn) {
   process.nextTick(run)
 }
 
-var assert = require('assert')
+var assert = require('assert');
+Error.captureStackTrace = function(){};
+
 var t = Object.keys(assert).map(function (k) {
   if (typeof assert[k] !== 'function') return;
   return [k, function () {
@@ -23,13 +25,13 @@ var t = Object.keys(assert).map(function (k) {
     try {
       assert[k].apply(assert, arguments)
       pass ++
-      console.log('ok %d %s', id, k)
-      console.log('')
+      console.log('ok', id, k)
     } catch (e) {
 
       fail ++
       // ignore everything up to the run() function
-      Error.captureStackTrace(e, t[k])
+      // Comment out until captureStackTrace is implemented
+      // Error.captureStackTrace(e, t[k])
       s = e.stack
       if (s) {
         s = s.trim().split(/\n/)
@@ -40,13 +42,13 @@ var t = Object.keys(assert).map(function (k) {
 
       if (s && !e.message)
         e.message = s[0]
-
-      console.log('not ok %d %s', id, s ? s.shift() : e.message)
+      console.log('')
+      console.log('not ok', id, s ? s.shift() : e.message)
       if (s && s.length) {
         s = s.map(function(s) {
           return s.trim() + '\n'
         })
-        console.log('# ' + s.join('# '))
+        console.log('#' + s.join('# '))
       }
       console.log('')
     }
@@ -57,15 +59,15 @@ var t = Object.keys(assert).map(function (k) {
 }, {})
 
 t.pass = function (m) {
-  t.assert(true, m)
+  assert(true, m)
 }
 
 t.fail = function (m) {
-  t.assert(false, m)
+  assert(false, m)
 }
 
 t.comment = function (m) {
-  console.log('# %s\n', m.replace(/^#\s*/, ''))
+  console.log('#', m.replace(/^#\s*/, ''), "\n")
 }
 
 t.end = run
@@ -83,17 +85,17 @@ function run() {
 
   var next = tests.shift();
   if (!next) {
-    console.log('0..%d', id)
+    console.log('0..', id)
     console.log('')
-    console.log('# pass %d/%d', pass, pass + fail)
-    console.log('# fail %d/%d', fail, pass + fail)
+    console.log('# pass', pass, pass + fail)
+    console.log('# fail', fail, pass + fail)
     process.exit(fail)
     return
   }
 
   var name = next[0];
   var fn = next[1];
-  console.log('# %s\n', name);
+  console.log('#', name);
   process.nextTick(function() {
     fn(t);
   })
