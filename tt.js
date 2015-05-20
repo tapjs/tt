@@ -83,7 +83,7 @@ function run() {
 
   var next = tests.shift();
   if (!next) {
-    console.log('0..%d', id)
+    console.log('1..%d', id)
     console.log('')
     console.log('# pass %d/%d', pass, pass + fail)
     console.log('# fail %d/%d', fail, pass + fail)
