@@ -1,6 +1,6 @@
 {
   "name": "tt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "tiny tap test thing",
   "main": "tt.js",
   "directories": {
