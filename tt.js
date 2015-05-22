@@ -57,11 +57,11 @@ var t = Object.keys(assert).map(function (k) {
 }, {})
 
 t.pass = function (m) {
-  t.assert(true, m)
+  t.ok(true, m)
 }
 
 t.fail = function (m) {
-  t.assert(false, m)
+  t.ok(false, m)
 }
 
 t.comment = function (m) {
